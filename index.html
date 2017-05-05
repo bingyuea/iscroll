@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+
+    <title>iScroll demo: scrollbars</title>
+    <link rel="stylesheet" href="pure.css">
+    <link href="index.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="./vue.js"></script>
+    <script type="text/javascript" src="./iscroll.js"></script>
+    <script type="text/javascript" src="./demoUtils.js"></script>
+    <script type="text/javascript">
+
+
+        var productObject = {
+            'tab1': {
+                id: 'tab1',
+                name: '舒化奶',
+                sub: {
+                    '17': {
+                        name: '1*12*250ml舒化中老年心活配方牛奶',
+                        id: '17',
+                        num: 0
+                    },
+                    '19': {
+                        name: '1*12*250ml舒化低脂无乳糖牛奶',
+                        id: '19',
+                        num: 0
+                    },
+                    '20': {
+                        name: '1*12*250ml舒化高钙无乳糖牛奶',
+                        id: '20',
+                        num: 0
+                    },
+                    '18': {
+                        name: '1*12*250ml舒化中老年优钙配方牛奶',
+                        id: '18',
+                        num: 0
+                    },
+                }
+            },
+            'tab2': {
+                id: 'tab2',
+                name: '安慕希',
+                sub: {
+                    '1': {
+                        name: '1*12*205g常温酸奶',
+                        id: '1',
+                        num: 0
+                    },
+                    '2': {
+                        name: '1*12*205g安慕希常温酸奶蓝莓味',
+                        id: '2',
+                        num: 0
+                    },
+                    '3': {
+                        name: '1*12*205g安慕希常温酸奶香草味',
+                        id: '3',
+                        num: 0
+                    },
+                }
+            },
+            'tab3': {
+                id: 'tab3',
+                name: '味可滋',
+                sub: {
+                    '37': {
+                        name: '1*12*240ml味可滋哈密瓜牛奶',
+                        id: '37',
+                        num: 0
+                    },
+                    '38': {
+                        name: '1*12*240ml味可滋香蕉牛奶',
+                        id: '38',
+                        num: 0
+                    },
+                    '39': {
+                        name: '1*12*240ml味可滋木瓜牛奶',
+                        id: '39',
+                        num: 0
+                    },
+                    '40': {
+                        name: '1*12*240ml味可滋巧克力牛奶',
+                        id: '40',
+                        num: 0
+                    },
+                    '76': {
+                        name: '1*12*250ml味可滋咖啡牛奶',
+                        id: '76',
+                        num: 0
+                    },
+                }
+            },
+            'tab4': {
+                id: 'tab4',
+                name: '畅意乳酸菌',
+                sub: {
+                    '56': {
+                        name: '1*12*330ml畅意100%乳酸菌饮品原味',
+                        id: '56',
+                        num: 0
+                    },
+                    '57': {
+                        name: '1*12*330ml畅意100%乳酸菌饮品草莓味',
+                        id: '57',
+                        num: 0
+                    },
+                }
+            },
+            'tab5': {
+                id: 'tab5',
+                name: '纯奶/功能奶',
+                sub: {
+                    '5': {
+                        name: '1*24*250ml脱脂奶',
+                        id: '5',
+                        num: 0
+                    },
+                    '6': {
+                        name: '1*6*1000ml纯牛奶',
+                        id: '6',
+                        num: 0
+                    },
+                    '7': {
+                        name: '1*16*250ml纯牛奶',
+                        id: '7',
+                        num: 0
+                    },
+                    '8': {
+                        name: '1*24*250ml纯牛奶',
+                        id: '8',
+                        num: 0
+                    },
+                    '9': {
+                        name: '1*24*250ml高钙低脂奶',
+                        id: '9',
+                        num: 0
+                    },
+                    '10': {
+                        name: '1*24*250ml高钙奶',
+                        id: '10',
+                        num: 0
+                    },
+                    '11': {
+                        name: '1*6*1000ml高钙低脂奶',
+                        id: '11',
+                        num: 0
+                    },
+                    '12': {
+                        name: '1*6*1000ml高钙奶',
+                        id: '12',
+                        num: 0
+                    },
+                }
+            },
+            'tab6': {
+                id: 'tab6',
+                name: '谷物/花色/早餐奶',
+                sub: {
+                    '31': {
+                        name: '1*12*200mL谷粒多颗粒燕麦牛奶',
+                        id: '31',
+                        num: 0
+                    },
+                    '32': {
+                        name: '1*12*250ml谷粒多黑谷牛奶饮品苗条礼盒装',
+                        id: '32',
+                        num: 0
+                    },
+                    '33': {
+                        name: '1*12*250ml谷粒多红谷牛奶饮品苗条礼盒装',
+                        id: '33',
+                        num: 0
+                    },
+                    '34': {
+                        name: '1*24*250ml巧克力奶',
+                        id: '34',
+                        num: 0
+                    },
+                    '35': {
+                        name: '1*24*250ml甜味奶',
+                        id: '35',
+                        num: 0
+                    },
+                    '36': {
+                        name: '1*12*240ml铁罐核桃乳',
+                        id: '36',
+                        num: 0
+                    },
+                    '41': {
+                        name: '1*24*250ml早餐奶麦香味',
+                        id: '41',
+                        num: 0
+                    },
+                    '42': {
+                        name: '1*24*250ml早餐奶核桃味',
+                        id: '42',
+                        num: 0
+                    },
+                    '75': {
+                        name: '1*12*200ml谷粒多核桃燕麦牛奶',
+                        id: '75',
+                        num: 0
+                    },
+                }
+            },
+            'tab7': {
+                id: 'tab7',
+                name: '果之优酸乳',
+                sub: {
+                    '51': {
+                        name: '1*12*245g康美包优酸乳果粒酸奶饮品草莓味',
+                        id: '51',
+                        num: 0
+                    },
+                    '50': {
+                        name: '1*12*245g康美包优酸乳果粒酸奶饮品芒果味',
+                        id: '50',
+                        num: 0
+                    },
+                    '52': {
+                        name: '1*12*245g康美包优酸乳果粒酸奶饮品哈密瓜味',
+                        id: '52',
+                        num: 0
+                    },
+                    '53': {
+                        name: '1*12*245g果汁优酸乳蓝莓味',
+                        id: '53',
+                        num: 0
+                    },
+                    '54': {
+                        name: '1*12*245g果汁优酸乳草莓味',
+                        id: '54',
+                        num: 0
+                    },
+                    '55': {
+                        name: '1*12*245g果汁优酸乳原味',
+                        id: '55',
+                        num: 0
+                    },
+                }
+            },
+            'tab8': {
+                id: 'tab8',
+                name: '优酸乳',
+                sub: {
+                    '58': {
+                        name: '1*24*250ml优酸乳哈密瓜味',
+                        id: '58',
+                        num: 0
+                    },
+                    '59': {
+                        name: '1*24*250g优酸乳爆趣珠乳饮料苹果味',
+                        id: '59',
+                        num: 0
+                    },
+                    '60': {
+                        name: '1*24*250g优酸乳爆趣珠乳饮料草莓味',
+                        id: '60',
+                        num: 0
+                    },
+                    '61': {
+                        name: '1*24*250ml优酸乳原味',
+                        id: '61',
+                        num: 0
+                    },
+                    '62': {
+                        name: '1*24*250ml优酸乳草莓味',
+                        id: '62',
+                        num: 0
+                    },
+                    '63': {
+                        name: '1*24*250ml优酸乳蓝莓味',
+                        id: '63',
+                        num: 0
+                    },
+                    '64': {
+                        name: '1*24*250ml优酸乳AD钙',
+                        id: '64',
+                        num: 0
+                    },
+                }
+            },
+            'tab9': {
+                id: 'tab9',
+                name: '日配',
+                sub: {
+                    '65': {
+                        name: '1*16*200ml纯牛奶',
+                        id: '65',
+                        num: 0
+                    },
+                    '66': {
+                        name: '1*16*240ml利乐枕纯牛奶（扁箱）',
+                        id: '66',
+                        num: 0
+                    },
+                    '67': {
+                        name: '1*12*485ml利乐枕纯牛奶',
+                        id: '67',
+                        num: 0
+                    },
+                    '68': {
+                        name: '1*16*240ml利乐枕高钙奶（扁箱）',
+                        id: '68',
+                        num: 0
+                    },
+                    '69': {
+                        name: '1*16*230ml利乐枕谷粒多黑谷牛奶饮品（扁箱）',
+                        id: '69',
+                        num: 0
+                    },
+                    '70': {
+                        name: '1*16*230ml利乐枕谷粒多红谷牛奶饮品（扁箱）',
+                        id: '70',
+                        num: 0
+                    },
+                    '71': {
+                        name: '1*16*190ml利乐枕核桃奶',
+                        id: '71',
+                        num: 0
+                    },
+                    '72': {
+                        name: '1*16*230ml利乐枕核桃奶（扁箱）',
+                        id: '72',
+                        num: 0
+                    },
+                    '73': {
+                        name: '1*16*195ml百利包草莓味优酸乳',
+                        id: '73',
+                        num: 0
+                    },
+                    '74': {
+                        name: '1*16*195ml百利包原味优酸乳',
+                        id: '74',
+                        num: 0
+                    },
+                }
+            },
+            'tab10': {
+                id: 'tab10',
+                name: '金典乳',
+                sub: {
+                    '13': {
+                        name: '1*12*250ml金典进口有机奶',
+                        id: '13',
+                        num: 0
+                    },
+                    '14': {
+                        name: '1*12*250ml金典奶',
+                        id: '14',
+                        num: 0
+                    },
+                    '15': {
+                        name: '1*12*250ml金典有机奶',
+                        id: '15',
+                        num: 0
+                    },
+                    '16': {
+                        name: '1*12*250ml金典低脂纯牛奶',
+                        id: '16',
+                        num: 0
+                    },
+                }
+            }
+        }
+
+
+        var myScroll, myScroll2;
+
+        function loaded() {
+
+            var app = new Vue({
+                el: '#vue-app',
+                data: {
+                    productObject: productObject,
+                    activeTab: 'tab1',
+                    count: 0, //总数
+                },
+                methods: {
+                    toggleTab: function (tabId) {
+                        this.activeTab = tabId;
+                        this.$nextTick(function () {
+                            myScroll2.refresh();
+                        })
+                    },
+                    //减
+                    reduce: function (id) {
+                        var obj = this.productObject[this.activeTab].sub[id];
+                        if (obj.num === 0) return;
+                        this.count--;
+                        obj.num--;
+                    },
+                    //加
+                    add: function (id) {
+                        this.productObject[this.activeTab].sub[id].num++;
+                        this.count++;
+                    },
+                    filter: function () {
+                        var arr = [];
+                        for (var k in productObject) {
+                            for (var sk in productObject[k].sub) {
+                                var o = productObject[k].sub[sk];
+                                if (o.num > 0) {
+                                    arr.push({
+                                        num: o.num,
+                                        productId: sk,
+                                        title: o.name,
+                                        classify: k
+                                    })
+                                }
+                            }
+                        }
+
+                        return arr;
+                    },
+                    submit: function () {
+                        var res = this.filter();
+                        alert(JSON.stringify(res))
+                    }
+                },
+                mounted: function () {
+                    myScroll = new IScroll('#wrapper', {
+                        click: true,
+//                        tap: true,
+                        scrollbars: true,
+                        mouseWheel: true,
+                        interactiveScrollbars: true,
+                        shrinkScrollbars: 'scale',
+                        fadeScrollbars: true
+                    });
+                    myScroll2 = new IScroll('#wrapper2', {
+                        click: true,
+//                        tap: true,
+                        scrollbars: true,
+                        mouseWheel: true,
+                        interactiveScrollbars: true,
+                        shrinkScrollbars: 'scale',
+                        fadeScrollbars: true
+                    });
+                }
+            })
+
+
+        }
+
+        document.addEventListener('touchmove', function (e) {
+            e.preventDefault();
+        }, isPassive() ? {
+            capture: false,
+            passive: false
+        } : false);
+
+    </script>
+</head>
+<body onload="loaded()">
+<div id='vue-app'>
+    <div id="header">
+        <a href="/webApp/index" class="left">
+            <img src="saleReport_back.png" width=14/>
+        </a>
+        <a href="/webApp/getSaleReport" class="right">
+            <img src="saleReport_orderLists.png" width=25/>
+        </a>
+    </div>
+    <div id='wrapper'>
+        <div class="scroller scroller-1">
+            <table class="pure-table pure-table-horizontal">
+                <tr v-for="obj in productObject" v-bind:class="{ active: activeTab === obj.id }"
+                    v-on:click="toggleTab(obj.id)">
+                    <td class="label" height=60>{{obj.name}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div id='wrapper2'>
+        <div class="scroller scroller-2">
+            <table class="pure-table pure-table-horizontal">
+                <tr v-for="obj in productObject[activeTab].sub">
+                    <td height=60>{{obj.name}}</td>
+                    <td width=90 class='calc'>
+                        <span class='act' v-on:click="reduce(obj.id)">-</span>
+                        <span class="num">{{obj.num}}</span>
+                        <span class='act' v-on:click="add(obj.id)">+</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div id="footer" class="footer">
+        <a class="submit" v-bind:class="{ active: count>0 }" v-on:click="submit">添加到清单</a>
+    </div>
+</div>
+
+
+</body>
+</html>
